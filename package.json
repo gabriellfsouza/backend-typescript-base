@@ -40,7 +40,8 @@
     "build": "babel src --extensions \".ts\" --out-dir build --copy-files --ignore \"**/*.spec.ts\" --no-copy-ignored",
     "start": "cross-env NODE_ENV=production node ./build/index",
     "dev": "cross-env NODE_ENV=development ts-node-dev --inspect --transpile-only --ignore-watch node_modules ./src/index.ts",
-    "pretest": "jest --clearCache",
-    "test": "jest"
+    "pretest": "cross-env-shell rm -rf coverage && jest --clearCache",
+    "test": "jest",
+    "lint": "eslint \"**/*.ts\" --ignore-pattern node_modules/"
   }
 }
