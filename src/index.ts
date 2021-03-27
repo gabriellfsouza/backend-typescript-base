@@ -1,14 +1,12 @@
-import express from 'express';
-import { logger } from './app/utils/winston-utils';
+import 'dotenv-flow/config';
+import app from './app';
+import { logger } from './app/utils/winston-util';
 
-const app = express();
+const port = process.env.PORT || '3000';
 
-app.get('/', (req, res) => {
-  res.send('test');
-});
-
-app.listen(3000, () => {
-  logger.debug('info');
+app.listen(port, (err?:Error) => {
+  if (err) throw err;
+  logger.debug(JSON.stringify({ port }));
 });
 
 export default app;
